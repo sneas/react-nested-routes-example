@@ -66,7 +66,7 @@ const App = () => (
   // We use <BrowserRouter> in order to support
   // routing example hosted on GitHub pages.
   // <BrowserRouter> could be safely replaced with <Router> in
-  // your production application
+  // your production application.
   <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Switch>
       {appRoutes.reverse().map(route => (
