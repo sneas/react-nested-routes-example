@@ -16,7 +16,7 @@ jobs:
             - npm-
       - run:
           name: Install NPM dependencies
-          command: yean
+          command: yarn
       - save_cache:
           name: Save NPM dependencies
           paths:
