@@ -5,6 +5,7 @@ import {
   Route,
   Switch
 } from "react-router-dom";
+import createHistory from "history/createBrowserHistory";
 import { routes } from "./routes";
 import "./App.css";
 import {
@@ -63,7 +64,7 @@ const Page = ({ route }) => (
 const appRoutes = flattenRoutes(setupParents(nestPaths(routes)));
 
 const App = () => (
-  <Router>
+  <Router history={createHistory({ basename: process.env.PUBLIC_URL })}>
     <Switch>
       {appRoutes.reverse().map(route => (
         <Route
