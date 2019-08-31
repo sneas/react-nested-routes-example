@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-nested-routes/static/css/main.73bf92e2.chunk.css",
+    "main.js": "/react-nested-routes/static/js/main.24a831e1.chunk.js",
+    "main.js.map": "/react-nested-routes/static/js/main.24a831e1.chunk.js.map",
+    "runtime~main.js": "/react-nested-routes/static/js/runtime~main.539d350b.js",
+    "runtime~main.js.map": "/react-nested-routes/static/js/runtime~main.539d350b.js.map",
+    "static/js/2.552e9085.chunk.js": "/react-nested-routes/static/js/2.552e9085.chunk.js",
+    "static/js/2.552e9085.chunk.js.map": "/react-nested-routes/static/js/2.552e9085.chunk.js.map",
+    "index.html": "/react-nested-routes/index.html",
+    "precache-manifest.8b925226cbcfc3ef327fdb9135a3b94c.js": "/react-nested-routes/precache-manifest.8b925226cbcfc3ef327fdb9135a3b94c.js",
+    "service-worker.js": "/react-nested-routes/service-worker.js",
+    "static/css/main.73bf92e2.chunk.css.map": "/react-nested-routes/static/css/main.73bf92e2.chunk.css.map"
+  }
+}
