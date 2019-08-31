@@ -1,6 +1,6 @@
 export const nestPaths = (routes, parent = '') => routes.map(
     route => {
-        const path = `${parent}${route.path}`;
+        const path = `${parent}${route.path}`.replace('//', '/');
 
         return {
             ...route,

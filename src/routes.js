@@ -2,7 +2,7 @@ import React from "react";
 
 export const routes = [
     {
-        path: '',
+        path: '/',
         label: 'All categories',
         main: () => <div>All categories</div>,
         children: [
