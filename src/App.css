@@ -1,0 +1,18 @@
+body {
+    padding: 12px;
+}
+
+nav {
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px dotted #eaeaea;
+}
+
+nav a {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+a.active {
+    font-weight: bold;
+}
