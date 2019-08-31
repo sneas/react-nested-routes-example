@@ -1,11 +1,10 @@
 import React, { Fragment } from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   NavLink,
   Route,
   Switch
 } from "react-router-dom";
-import createHistory from "history/createBrowserHistory";
 import { routes } from "./routes";
 import "./App.css";
 import {
@@ -64,7 +63,11 @@ const Page = ({ route }) => (
 const appRoutes = flattenRoutes(setupParents(nestPaths(routes)));
 
 const App = () => (
-  <Router history={createHistory({ basename: process.env.PUBLIC_URL })}>
+  // We use <BrowserRouter> in order to support
+  // routing example hosted on GitHub pages.
+  // <BrowserRouter> could be safely replaced with <Router> in
+  // your production application
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Switch>
       {appRoutes.reverse().map(route => (
         <Route
@@ -74,7 +77,7 @@ const App = () => (
         ></Route>
       ))}
     </Switch>
-  </Router>
+  </BrowserRouter>
 );
 
 export default App;
