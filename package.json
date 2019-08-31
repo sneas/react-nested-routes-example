@@ -1,7 +1,7 @@
 {
-  "name": "react-nested-routes",
+  "name": "react-nested-routes-example",
   "version": "0.0.0",
-  "homepage": "https://sneas.github.io/react-nested-routes",
+  "homepage": "https://sneas.github.io/react-nested-routes-example",
   "dependencies": {
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
