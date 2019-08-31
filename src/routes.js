@@ -4,46 +4,46 @@ export const routes = [
     {
         path: '/',
         label: 'All categories',
-        main: () => <div>All categories</div>,
+        main: () => <div><img src="https://via.placeholder.com/640x480?text=All%20categories" alt="All categories" /></div>,
         children: [
             {
                 path: '/electronics',
                 label: 'Electronics',
-                main: () => <div>Electronics</div>,
+                main: () => <div><img src="https://via.placeholder.com/640x480?text=Electronics" alt="Electronics" /></div>,
                 children: [
                     {
                         path: '/accessories',
                         label: 'Accessories',
-                        main: () => <div>Accessories</div>
+                        main: () => <div><img src="https://via.placeholder.com/640x480?text=Accessories" alt="Accessories" /></div>
                     },
                     {
                         path: '/headphones',
                         label: 'Headphones',
-                        main: () => <div>Headphones</div>
+                        main: () => <div><img src="https://via.placeholder.com/640x480?text=Headphones" alt="Headphones" /></div>
                     }
                 ]
             },
             {
                 path: '/computers',
                 label: 'Computers',
-                main: () => <div>Computers</div>,
+                main: () => <div><img src="https://via.placeholder.com/640x480?text=Computers" alt="Computers" /></div>,
                 children: [
                     {
                         path: '/laptops',
                         label: 'Laptops',
-                        main: () => <div>Laptops</div>
+                        main: () => <div><img src="https://via.placeholder.com/640x480?text=Laptops" alt="Laptops" /></div>
                     },
                     {
                         path: '/tablets',
                         label: 'Tablets',
-                        main: () => <div>Tablets</div>
+                        main: () => <div><img src="https://via.placeholder.com/640x480?text=Tablets" alt="Tablets" /></div>
                     }
                 ]
             },
             {
                 path: '/books',
                 label: 'Books',
-                main: () => <div>Books</div>,
+                main: () => <div><img src="https://via.placeholder.com/640x480?text=Books" alt="Books" /></div>,
             },
         ]
     },
