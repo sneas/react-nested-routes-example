@@ -1,6 +1,6 @@
 import React from "react";
 
-export const routes = [
+export const navigation = [
   {
     path: "/",
     label: "All categories",

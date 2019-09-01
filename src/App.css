@@ -22,6 +22,6 @@ nav {
 }
 
 .breadcrumbs .item::before {
-  content: '▸';
+  content: "▸";
   margin: 0 12px;
 }

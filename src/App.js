@@ -1,24 +1,14 @@
 import React, { Fragment } from "react";
-import {
-  BrowserRouter,
-  NavLink,
-  Route,
-  Switch
-} from "react-router-dom";
-import { routes } from "./routes";
+import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
+import { navigation } from "./navigation";
 import "./App.css";
-import {
-  flattenRoutes,
-  setupParents,
-  flattenParents,
-  nestPaths
-} from "./router-utils";
+import { flattenParents, generateAppPages } from "./navigation-utils";
 
-const RouteMenu = ({ route }) => (
+const PageMenu = ({ page }) => (
   <Fragment>
-    <div>{route.label}</div>
+    <div>{page.label}</div>
     <nav className="menu">
-      {route.children.map((child, index) => (
+      {page.children.map((child, index) => (
         <NavLink key={index} to={child.path}>
           {child.label}
         </NavLink>
@@ -27,46 +17,44 @@ const RouteMenu = ({ route }) => (
   </Fragment>
 );
 
-const ParentMenu = ({ route }) => (
+const ParentMenu = ({ page }) => (
   <Fragment>
-    {flattenParents(route)
+    {flattenParents(page)
       .reverse()
-      .map((parentRoute, index) => (
-        <RouteMenu key={index} route={parentRoute} />
+      .map((parent, index) => (
+        <PageMenu key={index} page={parent} />
       ))}
   </Fragment>
 );
 
-const Breadcrumbs = ({ route }) => (
+const Breadcrumbs = ({ page }) => (
   <Fragment>
     <div>Breadcrumbs</div>
     <nav className="breadcrumbs">
-      {[...flattenParents(route).reverse(), route].map((breadCrumb, index) => (
+      {[...flattenParents(page).reverse(), page].map((breadCrumb, index) => (
         <div key={index} className="item">
-          <NavLink to={breadCrumb.path}>
-            {breadCrumb.label}
-          </NavLink>
+          <NavLink to={breadCrumb.path}>{breadCrumb.label}</NavLink>
         </div>
       ))}
     </nav>
   </Fragment>
 );
 
-const Page = ({ route }) => (
+const Page = ({ page }) => (
   <Fragment>
-    <ParentMenu route={route} />
-    {route.children && <RouteMenu route={route} />}
+    <ParentMenu page={page} />
+    {page.children && <PageMenu page={page} />}
 
-    {route.parent && (
+    {page.parent && (
       <Fragment>
-        <Breadcrumbs route={route} />
+        <Breadcrumbs page={page} />
       </Fragment>
     )}
-    {route.main()}
+    {page.main()}
   </Fragment>
 );
 
-const appRoutes = flattenRoutes(setupParents(nestPaths(routes)));
+const pages = generateAppPages(navigation);
 
 const App = () => (
   // We use <BrowserRouter> in order to support
@@ -75,11 +63,11 @@ const App = () => (
   // your production application.
   <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Switch>
-      {appRoutes.reverse().map(route => (
+      {pages.reverse().map((page, index) => (
         <Route
-          key={route.path}
-          path={route.path}
-          render={() => <Page route={route} />}
+          key={index}
+          path={page.path}
+          render={() => <Page page={page} />}
         ></Route>
       ))}
     </Switch>
