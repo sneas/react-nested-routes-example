@@ -8,7 +8,7 @@ const RouteMenu = ({ route }) => (
   <Fragment>
     <div>{route.label}</div>
     <nav className="menu">
-      {route.children.map((child, index) => (
+      {route.routes.map((child, index) => (
         <NavLink key={index} to={child.path}>
           {child.label}
         </NavLink>
@@ -43,7 +43,7 @@ const Breadcrumbs = ({ route }) => (
 const Page = ({ route }) => (
   <Fragment>
     <ParentMenu route={route} />
-    {route.children && <RouteMenu route={route} />}
+    {route.routes && <RouteMenu route={route} />}
 
     {route.parent && (
       <Fragment>

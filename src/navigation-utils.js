@@ -5,7 +5,7 @@ export const nestPaths = (routes, parent = "") =>
     return {
       ...route,
       path,
-      ...(route.children && { children: nestPaths(route.children, path) })
+      ...(route.routes && { routes: nestPaths(route.routes, path) })
     };
   });
 
@@ -18,8 +18,8 @@ export const setupParents = (routes, parent = null) =>
 
     return {
       ...withParent,
-      ...(withParent.children && {
-        children: setupParents(withParent.children, withParent)
+      ...(withParent.routes && {
+        routes: setupParents(withParent.routes, withParent)
       })
     };
   });
@@ -34,7 +34,7 @@ export const flattenParents = route => {
 
 export const flattenRoutes = routes =>
   routes
-    .map(route => [route, route.children ? flattenRoutes(route.children) : []])
+    .map(route => [route, route.routes ? flattenRoutes(route.routes) : []])
     .flat(Infinity);
 
 export const generateAppRoutes = routes => {

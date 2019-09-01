@@ -12,7 +12,7 @@ export const navigation = [
         />
       </div>
     ),
-    children: [
+    routes: [
       {
         path: "/electronics",
         label: "Electronics",
@@ -24,7 +24,7 @@ export const navigation = [
             />
           </div>
         ),
-        children: [
+        routes: [
           {
             path: "/accessories",
             label: "Accessories",
@@ -62,7 +62,7 @@ export const navigation = [
             />
           </div>
         ),
-        children: [
+        routes: [
           {
             path: "/laptops",
             label: "Laptops",
