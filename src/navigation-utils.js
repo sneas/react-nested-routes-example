@@ -1,6 +1,9 @@
+export const appendTo = (parent, path) =>
+  `${parent.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
+
 export const nestPaths = (routes, parent = "") =>
   routes.map(route => {
-    const path = `${parent}${route.path}`.replace("//", "/");
+    const path = appendTo(parent, route.path);
 
     return {
       ...route,
