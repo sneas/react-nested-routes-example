@@ -4,52 +4,45 @@ import { navigation } from "./navigation";
 import "./App.css";
 import { flattenParents, generateAppRoutes } from "./navigation-utils";
 
-const RouteMenu = ({ route }) => (
-  <Fragment>
-    <div>{route.label}</div>
-    <nav className="menu">
-      {route.routes.map((child, index) => (
-        <NavLink key={index} to={child.path}>
-          {child.label}
-        </NavLink>
-      ))}
-    </nav>
-  </Fragment>
+const Menu = ({ routes }) => (
+  <nav className="menu">
+    {routes.map((route, index) => (
+      <NavLink key={index} to={route.path}>
+        {route.label}
+      </NavLink>
+    ))}
+  </nav>
 );
 
-const ParentMenu = ({ route }) => (
+const NestedMenu = ({ route }) => (
   <Fragment>
-    {flattenParents(route)
-      .reverse()
-      .map((parent, index) => (
-        <RouteMenu key={index} route={parent} />
+    {[...flattenParents(route).reverse(), route]
+      .filter(r => r.routes)
+      .map((r, index) => (
+        <Menu key={index} routes={r.routes} />
       ))}
   </Fragment>
 );
 
 const Breadcrumbs = ({ route }) => (
-  <Fragment>
-    <div>Breadcrumbs</div>
-    <nav className="breadcrumbs">
-      {[...flattenParents(route).reverse(), route].map((breadCrumb, index) => (
+  <nav className="breadcrumbs">
+    {[...flattenParents(route).reverse(), route].map(
+      (breadCrumb, index, breadcrumbs) => (
         <div key={index} className="item">
-          <NavLink to={breadCrumb.path}>{breadCrumb.label}</NavLink>
+          {index < breadcrumbs.length - 1 && (
+            <NavLink to={breadCrumb.path}>{breadCrumb.label}</NavLink>
+          )}
+          {index === breadcrumbs.length - 1 && breadCrumb.label}
         </div>
-      ))}
-    </nav>
-  </Fragment>
+      )
+    )}
+  </nav>
 );
 
 const Page = ({ route }) => (
   <Fragment>
-    <ParentMenu route={route} />
-    {route.routes && <RouteMenu route={route} />}
-
-    {route.parent && (
-      <Fragment>
-        <Breadcrumbs route={route} />
-      </Fragment>
-    )}
+    <NestedMenu route={route} />
+    {route.parent && <Breadcrumbs route={route} />}
     {route.main()}
   </Fragment>
 );

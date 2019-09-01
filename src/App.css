@@ -1,16 +1,25 @@
-nav {
-  padding-bottom: 12px;
+.menu {
+  border-bottom: 1px solid #eaeaea;
   margin-bottom: 12px;
-  border-bottom: 1px dotted #eaeaea;
 }
 
 .menu a {
   display: inline-block;
-  margin-right: 6px;
+  padding: 12px;
+  background-color: #eaeaea;
+  border: 1px solid #eaeaea;
+  margin-bottom: -1px;
 }
 
 .menu a.active {
   font-weight: bold;
+  background-color: white;
+}
+
+.breadcrumbs {
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  font-size: 90%;
 }
 
 .breadcrumbs .item {
