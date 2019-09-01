@@ -1,18 +1,18 @@
-export const nestPaths = (pages, parent = "") =>
-  pages.map(page => {
-    const path = `${parent}${page.path}`.replace("//", "/");
+export const nestPaths = (routes, parent = "") =>
+  routes.map(route => {
+    const path = `${parent}${route.path}`.replace("//", "/");
 
     return {
-      ...page,
+      ...route,
       path,
-      ...(page.children && { children: nestPaths(page.children, path) })
+      ...(route.children && { children: nestPaths(route.children, path) })
     };
   });
 
-export const setupParents = (pages, parent = null) =>
-  pages.map(page => {
+export const setupParents = (routes, parent = null) =>
+  routes.map(route => {
     const withParent = {
-      ...page,
+      ...route,
       ...(parent && { parent })
     };
 
@@ -24,19 +24,19 @@ export const setupParents = (pages, parent = null) =>
     };
   });
 
-export const flattenParents = page => {
-  if (!page.parent) {
+export const flattenParents = route => {
+  if (!route.parent) {
     return [];
   }
 
-  return [page.parent, ...flattenParents(page.parent)].flat(Infinity);
+  return [route.parent, ...flattenParents(route.parent)].flat(Infinity);
 };
 
-export const flattenPages = pages =>
-  pages
-    .map(page => [page, page.children ? flattenPages(page.children) : []])
+export const flattenRoutes = routes =>
+  routes
+    .map(route => [route, route.children ? flattenRoutes(route.children) : []])
     .flat(Infinity);
 
-export const generateAppPages = pages => {
-  return flattenPages(setupParents(nestPaths(pages)));
+export const generateAppRoutes = routes => {
+  return flattenRoutes(setupParents(nestPaths(routes)));
 };

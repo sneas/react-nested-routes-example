@@ -2,13 +2,13 @@ import React, { Fragment } from "react";
 import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
 import { navigation } from "./navigation";
 import "./App.css";
-import { flattenParents, generateAppPages } from "./navigation-utils";
+import { flattenParents, generateAppRoutes } from "./navigation-utils";
 
-const PageMenu = ({ page }) => (
+const RouteMenu = ({ route }) => (
   <Fragment>
-    <div>{page.label}</div>
+    <div>{route.label}</div>
     <nav className="menu">
-      {page.children.map((child, index) => (
+      {route.children.map((child, index) => (
         <NavLink key={index} to={child.path}>
           {child.label}
         </NavLink>
@@ -17,21 +17,21 @@ const PageMenu = ({ page }) => (
   </Fragment>
 );
 
-const ParentMenu = ({ page }) => (
+const ParentMenu = ({ route }) => (
   <Fragment>
-    {flattenParents(page)
+    {flattenParents(route)
       .reverse()
       .map((parent, index) => (
-        <PageMenu key={index} page={parent} />
+        <RouteMenu key={index} route={parent} />
       ))}
   </Fragment>
 );
 
-const Breadcrumbs = ({ page }) => (
+const Breadcrumbs = ({ route }) => (
   <Fragment>
     <div>Breadcrumbs</div>
     <nav className="breadcrumbs">
-      {[...flattenParents(page).reverse(), page].map((breadCrumb, index) => (
+      {[...flattenParents(route).reverse(), route].map((breadCrumb, index) => (
         <div key={index} className="item">
           <NavLink to={breadCrumb.path}>{breadCrumb.label}</NavLink>
         </div>
@@ -40,21 +40,21 @@ const Breadcrumbs = ({ page }) => (
   </Fragment>
 );
 
-const Page = ({ page }) => (
+const Page = ({ route }) => (
   <Fragment>
-    <ParentMenu page={page} />
-    {page.children && <PageMenu page={page} />}
+    <ParentMenu route={route} />
+    {route.children && <RouteMenu route={route} />}
 
-    {page.parent && (
+    {route.parent && (
       <Fragment>
-        <Breadcrumbs page={page} />
+        <Breadcrumbs route={route} />
       </Fragment>
     )}
-    {page.main()}
+    {route.main()}
   </Fragment>
 );
 
-const pages = generateAppPages(navigation);
+const routes = generateAppRoutes(navigation);
 
 const App = () => (
   // We use <BrowserRouter> in order to support
@@ -63,11 +63,11 @@ const App = () => (
   // your production application.
   <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Switch>
-      {pages.reverse().map((page, index) => (
+      {routes.reverse().map((route, index) => (
         <Route
           key={index}
-          path={page.path}
-          render={() => <Page page={page} />}
+          path={route.path}
+          render={() => <Page route={route} />}
         ></Route>
       ))}
     </Switch>
