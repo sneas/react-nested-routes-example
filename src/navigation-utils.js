@@ -1,5 +1,5 @@
 export const combine = (parent, path) =>
-  `${parent.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
+  `${parent.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 
 export const nestPaths = (routes, parent = "") =>
   routes.map(route => {
