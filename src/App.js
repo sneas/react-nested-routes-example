@@ -15,14 +15,16 @@ import {
 } from "./router-utils";
 
 const RouteMenu = ({ route }) => (
-  <nav className="menu">
+  <Fragment>
     <div>{route.label}</div>
-    {route.children.map((child, index) => (
-      <NavLink key={index} to={child.path}>
-        {child.label}
-      </NavLink>
-    ))}
-  </nav>
+    <nav className="menu">
+      {route.children.map((child, index) => (
+        <NavLink key={index} to={child.path}>
+          {child.label}
+        </NavLink>
+      ))}
+    </nav>
+  </Fragment>
 );
 
 const ParentMenu = ({ route }) => (
@@ -36,14 +38,18 @@ const ParentMenu = ({ route }) => (
 );
 
 const Breadcrumbs = ({ route }) => (
-  <nav className="breadcrumbs">
+  <Fragment>
     <div>Breadcrumbs</div>
-    {[...flattenParents(route).reverse(), route].map((breadCrumb, index) => (
-      <NavLink key={index} to={breadCrumb.path}>
-        {breadCrumb.label}
-      </NavLink>
-    ))}
-  </nav>
+    <nav className="breadcrumbs">
+      {[...flattenParents(route).reverse(), route].map((breadCrumb, index) => (
+        <div key={index} className="item">
+          <NavLink to={breadCrumb.path}>
+            {breadCrumb.label}
+          </NavLink>
+        </div>
+      ))}
+    </nav>
+  </Fragment>
 );
 
 const Page = ({ route }) => (

@@ -4,11 +4,24 @@ nav {
   border-bottom: 1px dotted #eaeaea;
 }
 
-nav a {
+.menu a {
   display: inline-block;
   margin-right: 6px;
 }
 
-nav a.active {
+.menu a.active {
   font-weight: bold;
+}
+
+.breadcrumbs .item {
+  display: inline-block;
+}
+
+.breadcrumbs .item:first-child::before {
+  display: none;
+}
+
+.breadcrumbs .item::before {
+  content: '▸';
+  margin: 0 12px;
 }
