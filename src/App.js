@@ -27,12 +27,12 @@ const NestedMenu = ({ route }) => (
 const Breadcrumbs = ({ route }) => (
   <nav className="breadcrumbs">
     {[...flattenParents(route).reverse(), route].map(
-      (breadCrumb, index, breadcrumbs) => (
+      (crumb, index, breadcrumbs) => (
         <div key={index} className="item">
           {index < breadcrumbs.length - 1 && (
-            <NavLink to={breadCrumb.path}>{breadCrumb.label}</NavLink>
+            <NavLink to={crumb.path}>{crumb.label}</NavLink>
           )}
-          {index === breadcrumbs.length - 1 && breadCrumb.label}
+          {index === breadcrumbs.length - 1 && crumb.label}
         </div>
       )
     )}
