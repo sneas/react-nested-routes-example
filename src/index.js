@@ -3,8 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { navigation } from "./navigation";
+import { generateAppRoutes } from "./navigation-utils";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const routes = generateAppRoutes(navigation);
+
+ReactDOM.render(<App routes={routes} />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

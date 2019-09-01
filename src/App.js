@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
 import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
-import { navigation } from "./navigation";
 import "./App.css";
-import { flattenParents, generateAppRoutes } from "./navigation-utils";
+import { flattenParents } from "./navigation-utils";
 
 const Menu = ({ routes }) => (
   <nav className="menu">
@@ -47,9 +46,7 @@ const Page = ({ route }) => (
   </Fragment>
 );
 
-const routes = generateAppRoutes(navigation);
-
-const App = () => (
+const App = ({ routes }) => (
   // We use <BrowserRouter> in order to support
   // routing example hosted on GitHub pages.
   // <BrowserRouter> could be safely replaced with <Router> in
