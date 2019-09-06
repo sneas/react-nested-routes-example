@@ -4,7 +4,7 @@ export const navigation = [
   {
     path: "/",
     label: "All categories",
-    main: () => (
+    content: () => (
       <div>
         <img
           src="https://via.placeholder.com/640x480?text=All%20categories"
@@ -16,7 +16,7 @@ export const navigation = [
       {
         path: "/electronics",
         label: "Electronics",
-        main: () => (
+        content: () => (
           <div>
             <img
               src="https://via.placeholder.com/640x480?text=Electronics"
@@ -28,7 +28,7 @@ export const navigation = [
           {
             path: "/accessories",
             label: "Accessories",
-            main: () => (
+            content: () => (
               <div>
                 <img
                   src="https://via.placeholder.com/640x480?text=Accessories"
@@ -40,7 +40,7 @@ export const navigation = [
           {
             path: "/headphones",
             label: "Headphones",
-            main: () => (
+            content: () => (
               <div>
                 <img
                   src="https://via.placeholder.com/640x480?text=Headphones"
@@ -54,7 +54,7 @@ export const navigation = [
       {
         path: "/computers",
         label: "Computers",
-        main: () => (
+        content: () => (
           <div>
             <img
               src="https://via.placeholder.com/640x480?text=Computers"
@@ -66,7 +66,7 @@ export const navigation = [
           {
             path: "/laptops",
             label: "Laptops",
-            main: () => (
+            content: () => (
               <div>
                 <img
                   src="https://via.placeholder.com/640x480?text=Laptops"
@@ -78,7 +78,7 @@ export const navigation = [
           {
             path: "/tablets",
             label: "Tablets",
-            main: () => (
+            content: () => (
               <div>
                 <img
                   src="https://via.placeholder.com/640x480?text=Tablets"
@@ -92,7 +92,7 @@ export const navigation = [
       {
         path: "/books",
         label: "Books",
-        main: () => (
+        content: () => (
           <div>
             <img
               src="https://via.placeholder.com/640x480?text=Books"

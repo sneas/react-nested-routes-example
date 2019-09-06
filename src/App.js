@@ -42,7 +42,7 @@ const Page = ({ route }) => (
   <Fragment>
     <NestedMenu route={route} />
     {route.parent && <Breadcrumbs route={route} />}
-    {route.main()}
+    {route.content()}
   </Fragment>
 );
 
