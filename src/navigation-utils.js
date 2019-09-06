@@ -1,22 +1,43 @@
-export const combine = (parent, path) =>
-  `${parent.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+/**
+ * Combine paths
+ *
+ * @param {string} parent
+ * @param {string} child
+ * @returns {string}
+ */
+export const combinePaths = (parent, child) =>
+  `${parent.replace(/\/$/, "")}/${child.replace(/^\//, "")}`;
 
-export const nestPaths = (routes, parent = "") =>
-  routes.map(route => {
-    const path = combine(parent, route.path);
+/**
+ * Recursively build paths for each navigation item
+ *
+ * @param navigation
+ * @param {string} parentPath
+ * @returns {*}
+ */
+export const buildPaths = (navigation, parentPath = "") =>
+  navigation.map(route => {
+    const path = combinePaths(parentPath, route.path);
 
     return {
       ...route,
       path,
-      ...(route.routes && { routes: nestPaths(route.routes, path) })
+      ...(route.routes && { routes: buildPaths(route.routes, path) })
     };
   });
 
-export const setupParents = (routes, parent = null) =>
-  routes.map(route => {
+/**
+ * Recursively provide parent reference for each navigation item
+ *
+ * @param navigation
+ * @param parentRoute
+ * @returns {*}
+ */
+export const setupParents = (navigation, parentRoute = null) =>
+  navigation.map(route => {
     const withParent = {
       ...route,
-      ...(parent && { parent })
+      ...(parentRoute && { parent: parentRoute })
     };
 
     return {
@@ -27,19 +48,37 @@ export const setupParents = (routes, parent = null) =>
     };
   });
 
+/**
+ * Convert navigation tree into flat array
+ *
+ * @param navigation
+ * @returns {any[]}
+ */
+export const flattenNavigation = navigation =>
+  navigation
+    .map(route => [route, route.routes ? flattenNavigation(route.routes) : []])
+    .flat(Infinity);
+
+/**
+ * Combine all the above functions together
+ *
+ * @param navigation
+ * @returns {any[]}
+ */
+export const generateAppRoutes = navigation => {
+  return flattenNavigation(setupParents(buildPaths(navigation)));
+};
+
+/**
+ * Provide list of parents for an individual route
+ *
+ * @param route
+ * @returns {any[]|Array}
+ */
 export const flattenParents = route => {
   if (!route.parent) {
     return [];
   }
 
   return [route.parent, ...flattenParents(route.parent)].flat(Infinity);
-};
-
-export const flattenRoutes = routes =>
-  routes
-    .map(route => [route, route.routes ? flattenRoutes(route.routes) : []])
-    .flat(Infinity);
-
-export const generateAppRoutes = routes => {
-  return flattenRoutes(setupParents(nestPaths(routes)));
 };
