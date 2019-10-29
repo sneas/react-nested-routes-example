@@ -38,13 +38,16 @@ const Breadcrumbs = ({ route }) => (
   </nav>
 );
 
-const Page = ({ route }) => (
-  <Fragment>
-    <NestedMenu route={route} />
-    {route.parent && <Breadcrumbs route={route} />}
-    {route.content()}
-  </Fragment>
-);
+const Page = ({ route }) => {
+  const PageBody = route.component;
+  return (
+    <Fragment>
+      <NestedMenu route={route} />
+      {route.parent && <Breadcrumbs route={route} />}
+      <PageBody />
+    </Fragment>
+  );
+};
 
 const App = ({ routes }) => (
   // We use <BrowserRouter> in order to support
