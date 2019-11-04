@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { navigation } from "./navigation";
-import { generateAppRoutes } from "./navigation-utils";
+import { generateAppRoutes } from "./navigation/utils";
 
 const routes = generateAppRoutes(navigation);
 
