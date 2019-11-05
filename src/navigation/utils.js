@@ -11,12 +11,12 @@ export const combinePaths = (parent, child) =>
 /**
  * Recursively build paths for each navigation item
  *
- * @param navigation
+ * @param routes
  * @param {string} parentPath
  * @returns {*}
  */
-export const buildPaths = (navigation, parentPath = "") =>
-  navigation.map(route => {
+export const buildPaths = (routes, parentPath = "") =>
+  routes.map(route => {
     const path = combinePaths(parentPath, route.path);
 
     return {
@@ -29,12 +29,12 @@ export const buildPaths = (navigation, parentPath = "") =>
 /**
  * Recursively provide parent reference for each navigation item
  *
- * @param navigation
+ * @param routes
  * @param parentRoute
  * @returns {*}
  */
-export const setupParents = (navigation, parentRoute = null) =>
-  navigation.map(route => {
+export const setupParents = (routes, parentRoute = null) =>
+  routes.map(route => {
     const withParent = {
       ...route,
       ...(parentRoute && { parent: parentRoute })
@@ -51,22 +51,22 @@ export const setupParents = (navigation, parentRoute = null) =>
 /**
  * Convert navigation tree into flat array
  *
- * @param navigation
+ * @param routes
  * @returns {any[]}
  */
-export const flattenNavigation = navigation =>
-  navigation
-    .map(route => [route, route.routes ? flattenNavigation(route.routes) : []])
+export const flattenRoutes = routes =>
+  routes
+    .map(route => [route, route.routes ? flattenRoutes(route.routes) : []])
     .flat(Infinity);
 
 /**
  * Combine all the above functions together
  *
- * @param navigation
+ * @param routes
  * @returns {any[]}
  */
-export const generateAppRoutes = navigation => {
-  return flattenNavigation(setupParents(buildPaths(navigation)));
+export const generateAppRoutes = routes => {
+  return flattenRoutes(setupParents(buildPaths(routes)));
 };
 
 /**

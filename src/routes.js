@@ -7,7 +7,7 @@ import Laptops from "./pages/Computers/Laptops";
 import Tablets from "./pages/Computers/Tablets";
 import Books from "./pages/Books";
 
-export const navigation = [
+export const routes = [
   {
     path: "/",
     label: "All categories",
