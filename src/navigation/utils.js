@@ -56,7 +56,7 @@ export const setupParents = (routes, parentRoute = null) =>
  */
 export const flattenRoutes = routes =>
   routes
-    .map(route => [route, route.routes ? flattenRoutes(route.routes) : []])
+    .map(route => [route.routes ? flattenRoutes(route.routes) : [], route])
     .flat(Infinity);
 
 /**
@@ -66,7 +66,7 @@ export const flattenRoutes = routes =>
  * @returns {any[]}
  */
 export const generateAppRoutes = routes => {
-  return flattenRoutes(setupParents(buildPaths(routes))).reverse();
+  return flattenRoutes(setupParents(buildPaths(routes)));
 };
 
 /**
