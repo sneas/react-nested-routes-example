@@ -66,7 +66,7 @@ export const flattenRoutes = routes =>
  * @returns {any[]}
  */
 export const generateAppRoutes = routes => {
-  return flattenRoutes(setupParents(buildPaths(routes)));
+  return flattenRoutes(setupParents(buildPaths(routes))).reverse();
 };
 
 /**

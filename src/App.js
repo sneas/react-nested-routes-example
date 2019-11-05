@@ -10,7 +10,7 @@ const App = ({ routes }) => (
   // your production application.
   <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Switch>
-      {routes.reverse().map((route, index) => (
+      {routes.map((route, index) => (
         <Route key={index} path={route.path}>
           <Page route={route} />
         </Route>
