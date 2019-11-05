@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-nested-routes-example/precache-manifest.25f58e40747759c4f3481f33f9c91648.js"
+  "/react-nested-routes-example/precache-manifest.ed44c428a53c670fd6f86e9216a8f7e6.js"
 );
 
 self.addEventListener('message', (event) => {
