@@ -11,11 +11,9 @@ const App = ({ routes }) => (
   <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Switch>
       {routes.reverse().map((route, index) => (
-        <Route
-          key={index}
-          path={route.path}
-          render={() => <Page route={route} />}
-        ></Route>
+        <Route key={index} path={route.path}>
+          <Page route={route} />
+        </Route>
       ))}
     </Switch>
   </BrowserRouter>
