@@ -73,7 +73,7 @@ export const generateAppRoutes = routes => {
  * Provide list of parents for an individual route
  *
  * @param route
- * @returns {any[]|Array}
+ * @returns {any[]}
  */
 export const flattenParents = route => {
   if (!route.parent) {
