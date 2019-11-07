@@ -80,5 +80,5 @@ export const flattenParents = route => {
     return [];
   }
 
-  return [route.parent, ...flattenParents(route.parent)].flat(Infinity);
+  return [route.parent, ...flattenParents(route.parent)];
 };
