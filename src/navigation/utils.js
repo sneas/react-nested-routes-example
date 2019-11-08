@@ -70,15 +70,15 @@ export const generateAppRoutes = routes => {
 };
 
 /**
- * Provide list of parents for an individual route
+ * Provides path from root to the element
  *
  * @param route
  * @returns {any[]}
  */
-export const flattenParents = route => {
+export const pathTo = route => {
   if (!route.parent) {
-    return [];
+    return [route];
   }
 
-  return [route.parent, ...flattenParents(route.parent)];
+  return [...pathTo(route.parent), route];
 };

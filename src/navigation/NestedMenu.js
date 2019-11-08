@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { flattenParents } from "./utils";
+import { pathTo } from "./utils";
 
 const Menu = ({ routes }) => (
   <nav className="menu">
@@ -14,7 +14,7 @@ const Menu = ({ routes }) => (
 
 const NestedMenu = ({ route }) => (
   <>
-    {[...flattenParents(route).reverse(), route]
+    {pathTo(route)
       .filter(r => r.routes)
       .map((r, index) => (
         <Menu key={index} routes={r.routes} />
