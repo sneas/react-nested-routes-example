@@ -1,56 +1,56 @@
-import All from "./pages/All";
-import Electronics from "./pages/Electronics";
-import Accessories from "./pages/Electronics/Accessories";
-import Headphones from "./pages/Electronics/Headphones";
-import Computers from "./pages/Computers";
-import Laptops from "./pages/Computers/Laptops";
-import Tablets from "./pages/Computers/Tablets";
-import Books from "./pages/Books";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Team from "./pages/About/Team";
+import Careers from "./pages/About/Careers";
+import Pricing from "./pages/Pricing";
+import Basic from "./pages/Pricing/Basic";
+import Corporate from "./pages/Pricing/Corporate";
+import Users from "./pages/Users";
 
 export const routes = [
   {
     path: "/",
-    label: "All categories",
-    component: All,
+    label: "Home",
+    component: Home,
     routes: [
       {
-        path: "/electronics",
-        label: "Electronics",
-        component: Electronics,
+        path: "/about",
+        label: "About",
+        component: About,
         routes: [
           {
-            path: "/accessories",
-            label: "Accessories",
-            component: Accessories
+            path: "/our-team",
+            label: "Our Team",
+            component: Team
           },
           {
-            path: "/headphones",
-            label: "Headphones",
-            component: Headphones
+            path: "/careers",
+            label: "Careers",
+            component: Careers
           }
         ]
       },
       {
-        path: "/computers",
-        label: "Computers",
-        component: Computers,
-        routes: [
-          {
-            path: "/laptops",
-            label: "Laptops",
-            component: Laptops
-          },
-          {
-            path: "/tablets",
-            label: "Tablets",
-            component: Tablets
-          }
-        ]
+        path: "/users",
+        label: "Users",
+        component: Users
       },
       {
-        path: "/books",
-        label: "Books",
-        component: Books
+        path: "/pricing",
+        label: "Pricing",
+        component: Pricing,
+        routes: [
+          {
+            path: "/basic",
+            label: "Basic",
+            component: Basic
+          },
+          {
+            path: "/corporate",
+            label: "Corporate",
+            component: Corporate
+          }
+        ]
       }
     ]
   }

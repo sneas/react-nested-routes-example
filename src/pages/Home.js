@@ -1,12 +1,12 @@
 import React from "react";
 
-const All = () => (
+const Home = () => (
   <div>
     <img
       src="https://via.placeholder.com/640x480?text=All%20categories"
-      alt="All categories"
+      alt="Home categories"
     />
   </div>
 );
 
-export default All;
+export default Home;
