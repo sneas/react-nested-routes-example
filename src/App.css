@@ -4,15 +4,26 @@
 
 .menu a {
   display: inline-block;
-  padding: 12px;
-  background-color: #eaeaea;
-  border: 1px solid #eaeaea;
   margin-bottom: -1px;
+  margin-right: 12px;
 }
 
 .menu a.active {
   font-weight: bold;
   background-color: white;
+}
+
+.menu-level-0 {
+  border-bottom: 1px solid #eaeaea;
+}
+
+.menu-level-0 a {
+  padding: 12px;
+  background-color: #eaeaea;
+  border: 1px solid #eaeaea;
+  font-size: 1.5rem;
+  text-decoration: none;
+  margin-right: 6px;
 }
 
 .breadcrumbs {
